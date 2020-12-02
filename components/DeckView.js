@@ -1,24 +1,17 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+import { connect } from "react-redux";
 import { getData, getDatas } from "../utils/api";
 
 class DeckView extends React.Component {
-    state = {
-        text: ''
+    
 
-    }
-
-    submitDeckName = () =>{
-       const  {text } = this.state;
-       saveDeckTitle(text)
-       this.props.dispatch(AddDeck(text))
-       this.props.navigation.navigate('DeckView')
-     }
   render() {
     const deck = this.props.route.params.deck
-    console.log(deck)
-    const decks = getDatas()
+    //console.log(deck)
+    const decks = this.props.decks
+    
     return (
       <View style={ styles.container }>
           <Text>{decks[deck].title}</Text>
@@ -38,4 +31,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DeckView;
+
+
+function mapStateToProps(decks) {
+  
+  return {
+    decks:decks
+  } 
+}
+
+export default connect(mapStateToProps)(DeckView);

@@ -7,13 +7,13 @@ const initialData = {
       title: "Geography",
       questions: [
         {
-          question: "Is south africa a country",
+          question: "Is Cameroon a country",
           anser: "No , it is just a region ",
           correctAnswer: "false",
         },
         {
-          question: "Which US state is next to california",
-          anser: "New york ",
+          question: "Which Country is next to Cameroon",
+          anser: "Congo ",
           correctAnswer: "false",
         },
       ],
@@ -50,6 +50,39 @@ const initialData = {
         ))
     }
 
+
+    export const getData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+        return jsonValue != null ? JSON.parse(jsonValue) : null;
+      } catch(e) {
+        // error reading value
+        console.log("reading data error")
+      }
+    }
+
+    export  const storeData = async (value) => {
+      try {
+        const jsonValue = JSON.stringify(value)
+        await AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, jsonValue)
+      } catch (e) {
+        // saving error
+        console.log("saving error")
+      }
+    }
+
+
+  export const  addNewDeck = async (deck) => {
+      try {
+             
+       const newdeck =  JSON.stringify(deck)
+        await AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, newdeck )
+     
+      }catch(e){
+        console.log(e)
+      }
+    }
+     
     // const storeData = async (value) => {
     //   try {
     //     const jsonValue = JSON.stringify(value)

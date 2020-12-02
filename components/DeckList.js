@@ -3,61 +3,27 @@ import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux";
 import { recieveDecks } from "../actions";
-import { getDecks,getDatas } from "../utils/api";
+import { getDecks,getDatas,getData,storeData } from "../utils/api";
 
 class DeckList extends React.Component {
 
     componentDidMount(){
-         
-      //  getDecks()
-      //    .then(decks => this.props.recieveAllDecks(decks))
-      //this.props.recieveAllDecks(getDecks())
-      
-const getData = async () => {
-  try {
-    const jsonValue = await AsyncStorage.getItem('flashcards: decks')
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
-  } catch(e) {
-    // error reading value
-    console.log("reading data error")
-  }
-}
-
-const storeData = async (value) => {
-  try {
-    const jsonValue = JSON.stringify(value)
-    await AsyncStorage.setItem('flashcards: decks', jsonValue)
-  } catch (e) {
-    // saving error
-    console.log("saving error")
-  }
-}
-
        getData()
        .then(decks => 
-        {
-          console.log(decks)
-          if(decks === null){
-           
+        {        
+          //if this is the first time of running the App
+          //Initialize the memory with dummy data
+          if(decks === null){          
             storeData(getDatas())
             .then(dec => 
-             {
-              // if(decks === null){ }
-               //console.log(dec)
-             this.props.recieveAllDecks(getDatas())}
+             { this.props.recieveAllDecks(getDatas())}
              )
- 
           }
           else{
-            //console.log(decks)
             this.props.recieveAllDecks(decks)
           }
-      //  this.props.recieveAllDecks(decks)
-    }
-        )
-//this.props.recieveAllDecks(getData)
-
-      
+       }
+        )     
       }
 
 

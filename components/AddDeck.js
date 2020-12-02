@@ -1,28 +1,43 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import { getData, saveDeckTitle } from "../utils/api";
+import { connect } from "react-redux";
+import { addDeck } from "../actions";
+import { addNewDeck } from "../utils/api";
+
 
 class AddDeck extends React.Component {
     state = {
-        text: ''
-
+      title: ''
+        
     }
 
     submitDeckName = () =>{
-       const  {text } = this.state;
-       saveDeckTitle(text)
-       this.props.dispatch(AddDeck(text))
-       this.props.navigation.navigate('DeckView')
+       const  {title } = this.state;  
+       const deckVal = {[title]: {
+        title : title,
+         questions:[],
+        }   }
+          //updating the memory
+          console.log(deckVal)
+          addNewDeck(deckVal )
+            .then(results => {
+               console.log(results)
+            });
+           
+        //updating the store
+       this.props.addDeck(deckVal)
+       
+       this.props.navigation.navigate('DeckView',{deck:title})
      }
   render() {
     
     return (
       <View style={ styles.container }>
-          <Text>Enter the new Deck's name</Text>
-          <TextInput onCHangeValue={(text)=>this.setState({text:text})} 
-          value={this.state.text}></TextInput>
-          <Button onPress={this.submitDeckName} title='submit'></Button>
+          <Text style={ styles.title }>Enter the new Deck's name</Text>
+          <TextInput style={ styles.input } onChangeText={(text)=>this.setState({title:text})} 
+          value={this.state.title}></TextInput>
+          <Button style={ styles.submitBtn } onPress={this.submitDeckName} title='submit'></Button>
       </View>
     );
   }
@@ -32,9 +47,37 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
-    
+    justifyContent: "center",   
   },
+  input:{
+ width: 200,
+ height: 44,
+ padding: 8,
+ borderWidth: 1,
+ borderColor: '#757575',
+ margin: 50,
+ borderRadius:8
+  },
+  title:{
+    fontSize:30,
+    color: '#333'
+  },
+  submitBtn:{
+    borderWidth:0.5,
+    borderColor: '#d6d7da',
+    padding: 10,
+    borderRadius: 7,
+    overflow:'hidden'
+  }
 });
 
-export default AddDeck;
+
+
+function mapDispatchToProps(dispatch){
+  return{
+   addDeck: (deck)=> dispatch(addDeck(deck))
+  }
+
+}
+
+export default connect(null,mapDispatchToProps)(AddDeck);

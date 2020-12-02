@@ -4,13 +4,8 @@
  function deck (state = {},action){
     switch (action.type){
     case ADD_DECK:
-    const newDeck = {
-     [action.deck]: {
-        title:action.deck,
-        questions:[]
-     }
-     }
-      return {...state,...newDeck}
+   
+      return {...state,...action.deck}
       
       case RECIEVE_DECKS:
         

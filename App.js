@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import DeckList from './components/DeckList';
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} >
      <DeckList />
     </View>
   );
@@ -14,7 +15,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#eef',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -38,7 +38,7 @@ const initialData = {
   };
   
 
-    export const getData = () =>{return initialData}
+    export const getDatas = () =>{return initialData}
 
     export function saveDeckTitle(title){
         return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY,JSON.stringify(
@@ -50,19 +50,54 @@ const initialData = {
         ))
     }
 
+    // const storeData = async (value) => {
+    //   try {
+    //     const jsonValue = JSON.stringify(value)
+    //     await AsyncStorage.setItem('@storage_Key', jsonValue)
+    //   } catch (e) {
+    //     // saving error
+    //   }
+    // }
 
-    export function getDecks(deck){
-        return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY,JSON.stringify( )
-        .then(results => {
-            if(results === null)
-            {
-                AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY,JSON.stringify( initialData))
-                return initialData;
-            }
-            else {
-                return JSON.parse(results);
-            }
-        })
-        )
-    }
 
+    // export function  getDecks(deck){  
+     
+    //     getData = async () => {
+    //     try {
+    //       const results = await AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    //       if(results !== null) {
+    //         // value previously stored
+    //         return JSON.parse(results);
+    //       }
+    //       else{
+    //         // const jsonValue = JSON.stringify( initialData)
+    //         // await AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY,jsonValue )
+    //         return initialData;
+    //       }
+    //     } catch(e) {
+    //       // error reading value
+    //       console.log(e)
+    //     }
+    //   }
+      
+     
+     
+      //return initialData;
+       // console.log(444);
+        // return  AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY,JSON.stringify( )
+        // .then(results => {
+        //     if(results === null)
+        //     {
+        //         AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY,JSON.stringify( initialData))
+        //         return initialData;
+        //     }
+        //     else {
+        //         return JSON.parse(results);
+        //     }
+        // })
+        // )
+   // }
+
+
+    
+    

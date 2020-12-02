@@ -13,6 +13,7 @@
       return {...state,...newDeck}
       
       case RECIEVE_DECKS:
+        
       return{ ...state,...action.decks}
       
       case ADD_CARD_TO_DECK:

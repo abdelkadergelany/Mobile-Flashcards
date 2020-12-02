@@ -1,4 +1,6 @@
-import { AsyncStorage } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const FLASHCARDS_STORAGE_KEY = 'flashcards: decks'
 
 const initialData = {
     Geography: {
@@ -47,3 +49,20 @@ const initialData = {
 
         ))
     }
+
+
+    export function getDecks(deck){
+        return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY,JSON.stringify( )
+        .then(results => {
+            if(results === null)
+            {
+                AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY,JSON.stringify( initialData))
+                return initialData;
+            }
+            else {
+                return JSON.parse(results);
+            }
+        })
+        )
+    }
+

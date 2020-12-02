@@ -1,9 +1,9 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import { getData, saveDeckTitle } from "../utils/api";
+import { getData } from "../utils/api";
 
-class AddDeck extends React.Component {
+class DeckView extends React.Component {
     state = {
         text: ''
 
@@ -16,13 +16,14 @@ class AddDeck extends React.Component {
        this.props.navigation.navigate('DeckView')
      }
   render() {
-    
+    const deck = this.props.route.params.deck
+    console.log(deck)
+    const decks = getData()
     return (
       <View style={ styles.container }>
-          <Text>Enter the new Deck's name</Text>
-          <TextInput onCHangeValue={(text)=>this.setState({text:text})} 
-          value={this.state.text}></TextInput>
-          <Button onPress={this.submitDeckName} title='submit'></Button>
+          <Text>{decks[deck].title}</Text>
+          <Text>{decks[deck].questions.length}</Text>
+      
       </View>
     );
   }
@@ -37,4 +38,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddDeck;
+export default DeckView;

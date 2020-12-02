@@ -11,6 +11,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { orange, purple, white } from './utils/colors';
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import DeckView from './components/DeckView';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducer from './reducers'
 
 const RouteConfigs = {
   DeckList:{
@@ -109,13 +112,14 @@ const TabNavigatorConfig = {
 
 export default function App() {
   return (
-    <NavigationContainer >
-            {/* <Tab.Navigator {...TabNavigatorConfig}>
-                <Tab.Screen {...RouteConfigs['DeckList']} />
-                <Tab.Screen {...RouteConfigs['AddDeck']} />
-            </Tab.Navigator> */}
+    <Provider store={createStore(reducer)}>
+      <View style={{ flex: 1 }}>
+        <NavigationContainer >
             <MainNav />
         </NavigationContainer>
+        </View>
+    </Provider>
+       
   );
 }
 

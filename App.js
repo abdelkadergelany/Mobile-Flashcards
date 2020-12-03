@@ -15,41 +15,52 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './reducers'
 import AddCard from './components/AddCard';
+import Constants from "expo-constants";
 
-const RouteConfigs = {
-  DeckList:{
-    name: "DeckList",
-    component: DeckList,
-    options: {tabBarIcon: ({tintColor}) => <Ionicons name='cards' size={30} color={tintColor} />, title: 'DeckList'}
-  }, 
-  AddDeck:{
-    component: AddDeck,
-    name: "AddDeck",
-    options: {tabBarIcon: ({tintColor}) => <FontAwesome name='plus-square' size={30} color={tintColor} />, title: 'AddDeck'}
-  }
+
+function MyStatusBar({ backgroundColor, ...props }) {
+  return (
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
 }
+
+
+// const RouteConfigs = {
+//   DeckList:{
+//     name: "DeckList",
+//     component: DeckList,
+//     options: {tabBarIcon: ({tintColor}) => <Ionicons name='cards' size={30} color={tintColor} />, title: 'DeckList'}
+//   }, 
+//   AddDeck:{
+//     component: AddDeck,
+//     name: "AddDeck",
+//     options: {tabBarIcon: ({tintColor}) => <FontAwesome name='plus-square' size={30} color={tintColor} />, title: 'AddDeck'}
+//   }
+// }
 
 const Tabs = Platform.OS === 'ios'? createBottomTabNavigator() : createMaterialTopTabNavigator()
 
-const TabNavigatorConfig = {
-  navigationOptions: {
-    header: null
-  },
-  tabBarOptions: {
-    activeTintColor: Platform.OS === "ios" ? purple : white,
-    style: {
-      height: 56,
-      backgroundColor: Platform.OS === "ios" ? white : purple,
-      shadowColor: "rgba(0, 0, 0, 0.24)",
-      shadowOffset: {
-        width: 0,
-        height: 3
-      },
-      shadowRadius: 6,
-      shadowOpacity: 1
-    }
-  }
-  };
+// const TabNavigatorConfig = {
+//   navigationOptions: {
+//     header: null
+//   },
+//   tabBarOptions: {
+//     activeTintColor: Platform.OS === "ios" ? purple : white,
+//     style: {
+//       height: 56,
+//       backgroundColor: Platform.OS === "ios" ? white : purple,
+//       shadowColor: "rgba(0, 0, 0, 0.24)",
+//       shadowOffset: {
+//         width: 0,
+//         height: 3
+//       },
+//       shadowRadius: 6,
+//       shadowOpacity: 1
+//     }
+//   }
+//   };
 
   const TabNav = () => (
     <Tabs.Navigator
@@ -126,6 +137,7 @@ export default function App() {
     <Provider store={createStore(reducer)}>
       <View style={{ flex: 1 }}>
         <NavigationContainer >
+        <MyStatusBar backgroundColor={orange} barStyle="light-content" />
             <MainNav />
         </NavigationContainer>
         </View>

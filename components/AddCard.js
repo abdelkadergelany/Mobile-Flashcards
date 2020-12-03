@@ -29,7 +29,6 @@ import { blue, white } from '../utils/colors';
          this.props.addCardTo({question, answer, correctanswer,deck })
           this.setState({question:'',answer: '',correctanswer:''})
           this.props.navigation.goBack(null);
-         // this.props.navigation.dispatch(NavigationOptions.back({key:null}))
       }
 
      

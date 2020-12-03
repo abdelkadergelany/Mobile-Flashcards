@@ -88,19 +88,11 @@ const initialData = {
         
         const oldData = await AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
          const val =  JSON.parse(oldData)
-       
-      //  oldData !== null ? JSON.parse(oldData) : null;
-        if(oldData !== null){
-        //   console.log(2222)
-        //   // oldData =  JSON.parse(oldData)
-        //   console.log(val[name])
-        // console.log(2222)
-          // oldData =  JSON.parse(oldData)
-          // console.log(oldData[name])
+ 
+        if(oldData !== null){   
           val[name].questions.push(card)
-        //  console.log(val)
+       
           await AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(val))
-          // return oldData
         
         }
      
@@ -109,54 +101,3 @@ const initialData = {
       }
     }
      
-    // const storeData = async (value) => {
-    //   try {
-    //     const jsonValue = JSON.stringify(value)
-    //     await AsyncStorage.setItem('@storage_Key', jsonValue)
-    //   } catch (e) {
-    //     // saving error
-    //   }
-    // }
-
-
-    // export function  getDecks(deck){  
-     
-    //     getData = async () => {
-    //     try {
-    //       const results = await AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
-    //       if(results !== null) {
-    //         // value previously stored
-    //         return JSON.parse(results);
-    //       }
-    //       else{
-    //         // const jsonValue = JSON.stringify( initialData)
-    //         // await AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY,jsonValue )
-    //         return initialData;
-    //       }
-    //     } catch(e) {
-    //       // error reading value
-    //       console.log(e)
-    //     }
-    //   }
-      
-     
-     
-      //return initialData;
-       // console.log(444);
-        // return  AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY,JSON.stringify( )
-        // .then(results => {
-        //     if(results === null)
-        //     {
-        //         AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY,JSON.stringify( initialData))
-        //         return initialData;
-        //     }
-        //     else {
-        //         return JSON.parse(results);
-        //     }
-        // })
-        // )
-   // }
-
-
-    
-    

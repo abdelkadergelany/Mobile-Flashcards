@@ -38,7 +38,7 @@ class DeckList extends React.Component {
           return (
             <View key={deck}>
               <Text> {title}</Text>
-              <Text> {questions.length}</Text>
+              <Text> {questions.length} Cards</Text>
               <Button  title='view deck' onPress={()=>this.props.navigation.navigate('DeckView',{deck:deck})}></Button>
             </View>
           );

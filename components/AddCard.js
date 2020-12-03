@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { KeyboardAvoidingView, StyleSheet, View,Text, Button } from 'react-native'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import { blue, orange, pink, white } from '../utils/colors';
+import { connect } from 'react-redux';
+import { addCard } from '../actions';
+import { addNewCard } from '../utils/api';
+import { blue, white } from '../utils/colors';
 
-export default class AddCard extends Component {
+ class AddCard extends Component {
 
     state = {
         question: '',
@@ -13,27 +16,26 @@ export default class AddCard extends Component {
       }
 
       submitCard = () =>{
-        // const  {title } = this.state;  
-        // const deckVal = {[title]: {
-        //  title : title,
-        //   questions:[],
-        //  }   }
-        //    //updating the memory
-        //    console.log(deckVal)
-        //    addNewDeck(deckVal )
-        //      .then(results => {
+         const  {question, answer, correctanswer } = this.state;  
+           const deck = this.props.route.params.deck
+          
+            //updating the memory
+            addNewCard(deck,{question, answer, correctanswer })       
+             .then(results => {
                  console.log(555)
-        //      });
+              });
             
-        //  //updating the store
-        // this.props.addDeck(deckVal)
-        
-        // this.props.navigation.navigate('DeckView',{deck:title})
+          //updating the store
+         this.props.addCardTo({question, answer, correctanswer,deck })
+          this.setState({question:'',answer: '',correctanswer:''})
+        //  this.props.navigation.goBack(null);
+         // this.props.navigation.dispatch(NavigationOptions.back({key:null}))
       }
 
      
     render() {
         const deck = this.props.route.params.deck
+      
         return (
             <KeyboardAvoidingView style={ styles.container } behavior='padding'>
                 <View style={ styles.container }>
@@ -53,7 +55,7 @@ export default class AddCard extends Component {
                    
 
                    <TouchableOpacity style={styles.submitBtn } 
-                   onPress={this.submitCard(deck)} >
+                   onPress={this.submitCard} >
                    <Text style={styles.submitBtnText } >Submit</Text>
                    </TouchableOpacity>
                 
@@ -100,3 +102,11 @@ const styles = StyleSheet.create({
       }
   });
   
+  function mapDispatchToProps(dispatch){
+    return{
+     addCardTo: (card)=> dispatch(addCard(card))
+    }
+  
+  }
+  
+  export default connect(null,mapDispatchToProps)(AddCard);

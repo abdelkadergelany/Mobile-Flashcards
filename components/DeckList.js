@@ -29,6 +29,7 @@ class DeckList extends React.Component {
 
   render() {
        const decks = this.props.decks
+       console.log(decks)
     return (
       <View style={ styles.container }>
         {Object.keys(decks).map((deck) => {

@@ -85,20 +85,27 @@ const initialData = {
 
     export const  addNewCard = async (name,card) => {
       try {
+        
         const oldData = await AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
-        //oldData != null ? JSON.parse(jsonValue) : null;
+         const val =  JSON.parse(oldData)
+       
+      //  oldData !== null ? JSON.parse(oldData) : null;
         if(oldData !== null){
-          oldData =  JSON.parse(oldData)
-          oldData[name].questions.push(card)
-          await AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(oldData))
-           return oldData
+        //   console.log(2222)
+        //   // oldData =  JSON.parse(oldData)
+        //   console.log(val[name])
+        // console.log(2222)
+          // oldData =  JSON.parse(oldData)
+          // console.log(oldData[name])
+          val[name].questions.push(card)
+        //  console.log(val)
+          await AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(val))
+          // return oldData
+        
         }
-       else{
-         return null
-       }
      
       }catch(e){
-        console.log('error while adding card to deck')
+        console.log(e)
       }
     }
      

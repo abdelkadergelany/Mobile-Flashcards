@@ -18,7 +18,7 @@ class DeckView extends React.Component {
       <View style={ styles.container }>
           <Text>{decks[deck].title}</Text>
           <Text>{decks[deck].questions.length}</Text>
-       <ActionButton styles={styles} text='Add Card' onPress={()=>this.props.navigation.navigate('AddDeck',{deck:deck})} color={purple} />
+       <ActionButton styles={styles} text='Add Card' onPress={()=>this.props.navigation.navigate('AddCard',{deck:deck})} color={purple} />
       
 
        <ActionButton styles={styles} text='Take Quiz' onPress={()=>this.props.navigation.navigate('Quiz',{deck:deck})} color={lightPurp} />

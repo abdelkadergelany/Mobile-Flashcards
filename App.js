@@ -14,6 +14,7 @@ import DeckView from './components/DeckView';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './reducers'
+import AddCard from './components/AddCard';
 
 const RouteConfigs = {
   DeckList:{
@@ -103,6 +104,16 @@ const TabNavigatorConfig = {
           headerTintColor: white,
           headerStyle: {
             backgroundColor: orange,
+          },
+        }}
+      />
+        <Stack.Screen
+        name="AddCard"
+        component={AddCard}
+        options={{
+          headerTintColor: white,
+          headerStyle: {
+            backgroundColor: purple,
           },
         }}
       />

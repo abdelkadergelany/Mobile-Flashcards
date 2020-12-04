@@ -4,6 +4,7 @@ import { TextInput } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { getData, getDatas } from "../utils/api";
 import { lightPurp, pink, purple, white } from "../utils/colors";
+import { getCardSize } from "../utils/helpers";
 import ActionButton from "./ActionButton";
 
 class DeckView extends React.Component {
@@ -63,12 +64,12 @@ handleAnimaion = () =>{
        </Animated.View>
           
        <Animated.View style={rotateStyles}>
-         <Text style={ styles.cardText }>{decks[deck].questions.length} Questions</Text>
+         <Text style={ styles.cardText }>{decks[deck].questions? getCardSize(decks[deck].questions): null}</Text>
        </Animated.View>
        <ActionButton styles={styles} text='Add Card' onPress={()=>this.props.navigation.navigate('AddCard',{deck:deck})} color={purple} />
       
 
-       <ActionButton styles={styles} text='Take Quiz' onPress={()=>this.props.navigation.navigate('Quiz',{deck:deck})} color={lightPurp} />
+       <ActionButton styles={styles} text='Take Quiz' onPress={()=>{decks[deck].questions.length != 0 ? this.props.navigation.navigate('Quiz',{deck:deck}):false}} color={lightPurp} />
        </View>
       </View>
     );

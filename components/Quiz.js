@@ -30,7 +30,7 @@ class Quiz extends Component {
        const correct = decks[deck].questions[questionNumber].correctAnswer.toLowerCase()
         
          
-         if(answer === correct){
+         if(answer.trim() === correct.trim()){
              this.setState({correct:this.state.correct + 1})
          }
          else{

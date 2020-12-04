@@ -23,7 +23,7 @@ import { blue, white } from '../utils/colors';
                 return false
             }
             //updating the memory
-            addNewCard(deck,{question, answer, correctanswer })       
+            addNewCard(deck,{question, answer, correctAnswer })       
              .then(results => {
                  console.log(555)
               });

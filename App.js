@@ -28,40 +28,8 @@ function MyStatusBar({ backgroundColor, ...props }) {
 }
 
 
-// const RouteConfigs = {
-//   DeckList:{
-//     name: "DeckList",
-//     component: DeckList,
-//     options: {tabBarIcon: ({tintColor}) => <Ionicons name='cards' size={30} color={tintColor} />, title: 'DeckList'}
-//   }, 
-//   AddDeck:{
-//     component: AddDeck,
-//     name: "AddDeck",
-//     options: {tabBarIcon: ({tintColor}) => <FontAwesome name='plus-square' size={30} color={tintColor} />, title: 'AddDeck'}
-//   }
-// }
-
 const Tabs = Platform.OS === 'ios'? createBottomTabNavigator() : createMaterialTopTabNavigator()
 
-// const TabNavigatorConfig = {
-//   navigationOptions: {
-//     header: null
-//   },
-//   tabBarOptions: {
-//     activeTintColor: Platform.OS === "ios" ? purple : white,
-//     style: {
-//       height: 56,
-//       backgroundColor: Platform.OS === "ios" ? white : purple,
-//       shadowColor: "rgba(0, 0, 0, 0.24)",
-//       shadowOffset: {
-//         width: 0,
-//         height: 3
-//       },
-//       shadowRadius: 6,
-//       shadowOpacity: 1
-//     }
-//   }
-//   };
 
   const TabNav = () => (
     <Tabs.Navigator
@@ -70,9 +38,9 @@ const Tabs = Platform.OS === 'ios'? createBottomTabNavigator() : createMaterialT
         tabBarIcon: ({ color, size }) => {
           let icon;
           if (route.name === "DeckList") {
-            icon = <FontAwesome name="plus-square" size={size} color={color} />;
-          } else if (route.name === "AddDeck") {
             icon = <Ionicons name="ios-bookmarks" size={size} color={color} />;
+          } else if (route.name === "AddDeck") {
+            icon = <FontAwesome name="plus-square" size={size} color={color} />;
           } 
           return icon;
         },

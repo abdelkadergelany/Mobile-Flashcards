@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { recieveDecks } from "../actions";
 import { getDecks,getDatas,getData,storeData } from "../utils/api";
 import { pink, white } from "../utils/colors";
+import { getCardSize } from "../utils/helpers";
 
 class DeckList extends React.Component {
 
@@ -40,7 +41,7 @@ class DeckList extends React.Component {
           return (
             <View style={ styles.card } key={deck}>
               <Text style={ styles.cardText }> {title}</Text>
-              <Text style={ styles.cardText }> {questions.length} Cards</Text>
+          <Text style={ styles.cardText }> {questions? getCardSize(questions): null}</Text>
               <Button style={ styles.cardBtn } title='view deck' onPress={()=>this.props.navigation.navigate('DeckView',{deck:deck})}></Button>
             </View>
           );

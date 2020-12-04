@@ -17,6 +17,7 @@ import reducer from './reducers'
 import AddCard from './components/AddCard';
 import Constants from "expo-constants";
 import Quiz from './components/Quiz';
+import { setLocalNotification } from './utils/helpers';
 
 
 function MyStatusBar({ backgroundColor, ...props }) {
@@ -111,18 +112,26 @@ const Tabs = Platform.OS === 'ios'? createBottomTabNavigator() : createMaterialT
   );
   
 
-export default function App() {
-  return (
-    <Provider store={createStore(reducer)}>
-      <View style={{ flex: 1 }}>
-        <NavigationContainer >
-        <MyStatusBar backgroundColor={orange} barStyle="light-content" />
-            <MainNav />
-        </NavigationContainer>
-        </View>
-    </Provider>
-       
-  );
+export default class  App extends React.Component {
+
+   componentDidMount(){
+     setLocalNotification()
+   }
+
+   render(){
+    return (
+      <Provider store={createStore(reducer)}>
+        <View style={{ flex: 1 }}>
+          <NavigationContainer >
+          <MyStatusBar backgroundColor={orange} barStyle="light-content" />
+              <MainNav />
+          </NavigationContainer>
+          </View>
+      </Provider>
+         
+    )
+   }
+ 
 }
 
 const styles = StyleSheet.create({

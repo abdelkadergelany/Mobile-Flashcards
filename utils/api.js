@@ -19,18 +19,34 @@ const initialData = {
       ],
     },
   
-    JavaScript: {
-      title: "JavaScript",
+    Python: {
+      title: "Python",
       questions: [
         {
-          question: "Closure is combination of a function and the lexical environment",
+          question: "Python is combination of Multi snackes",
           answer:
-            "The combination of a function and the lexical environment within which that function was declared.",
+            "Is a pogramming langae.",
           correctAnswer: "false",
         },
         {
-          question: "a variable is Something that stores information",
-          answer: "Something that stores information",
+          question: "Python is an open source",
+          answer: "python is open source programming langage",
+          correctAnswer: "true",
+        },
+      ],
+    },
+    Math: {
+      title: "Math",
+      questions: [
+        {
+          question: "2 * 3 + 5 = 12",
+          answer:
+            "11",
+          correctAnswer: "false",
+        },
+        {
+          question: "1 + 1 =2",
+          answer: "2",
           correctAnswer: "true",
         },
       ],

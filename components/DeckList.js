@@ -34,7 +34,7 @@ class DeckList extends React.Component {
        const decks = this.props.decks
        console.log(decks)
     return (
-      <View style={ styles.container }>
+      <ScrollView style={ styles.container }>
         {Object.keys(decks).map((deck) => {
             
           const { title, questions } = decks[deck];
@@ -46,7 +46,7 @@ class DeckList extends React.Component {
             </View>
           );
         })}
-      </View>
+      </ScrollView>
     );
   }
 }

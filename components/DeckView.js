@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Animated,Button, StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { getData, getDatas } from "../utils/api";
@@ -7,17 +7,64 @@ import { lightPurp, pink, purple, white } from "../utils/colors";
 import ActionButton from "./ActionButton";
 
 class DeckView extends React.Component {
-    
-
+      
+  state = {
+    animation: new Animated.Value(0.5),
+    rotate: new Animated.Value(0)
+}    
+componentDidMount(){
+  this.handleAnimaion()
+}
+handleAnimaion = () =>{
+  Animated.spring(this.state.animation,
+      {toValue: 1.3,
+      friction: 2,
+      tension: 360,
+        duration: 1000}).start(( )=>{Animated.spring(this.state.animation,
+          {toValue: 1,
+          duration: 1000}).start()
+      })
+      Animated.timing(this.state.rotate,{
+          toValue:360,
+          duration:1500,
+          delay:1000
+      }).start(()=>{
+          Animated.timing(this.state.rotate,{
+              toValue:0,
+              duration: 1000
+          }).start()
+      })
+}
   render() {
     const deck = this.props.route.params.deck
     const decks = this.props.decks
+    const animatedStyle = {
+      transform:[
+          {scale: this.state.animation}
+      ]
+  }
+   const rotateInterpolate = this.state.rotate.interpolate({
+       inputRange: [0,360],
+       outputRange: ["0deg","1080deg"]
+   })
+    const rotateStyles ={
+        transform:[
+            {
+                rotate:rotateInterpolate
+            }
+        ]
+    }
     
     return (
       <View style={ styles.container }>
         <View style={ styles.card }>
+        <Animated.View style={animatedStyle}>
           <Text style={ styles.cardText }>{decks[deck].title}</Text>
-          <Text style={ styles.cardText }>{decks[deck].questions.length} Questions</Text>
+       </Animated.View>
+          
+       <Animated.View style={rotateStyles}>
+         <Text style={ styles.cardText }>{decks[deck].questions.length} Questions</Text>
+       </Animated.View>
        <ActionButton styles={styles} text='Add Card' onPress={()=>this.props.navigation.navigate('AddCard',{deck:deck})} color={purple} />
       
 

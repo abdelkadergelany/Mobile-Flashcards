@@ -12,9 +12,9 @@ const initialData = {
           correctAnswer: "false",
         },
         {
-          question: "Which Country is next to Cameroon",
-          answer: "Congo ",
-          correctAnswer: "false",
+          question: "Nigeria is a Country next to Cameroon",
+          answer: "Yes Cameroon is bordered by Cameroon ",
+          correctAnswer: "true",
         },
       ],
     },

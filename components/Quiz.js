@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Animated, StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux';
 import { blue, pink, purple, red, white } from '../utils/colors';
 import ActionButton from "./ActionButton";
@@ -11,7 +11,9 @@ class Quiz extends Component {
         questionNumber: 0,
         showQuestion:false,
         correct:0,
-        incorrect:0
+        incorrect:0,
+        animation: new Animated.Value(0.5),
+        rotate: new Animated.Value(0)
     }
     
     showAnswer = () => {
@@ -20,6 +22,7 @@ class Quiz extends Component {
 
     }
      submitAnswer = (answer) => {
+         this.handleAnimaion()
          const {questionNumber} = this.state
          const deck = this.props.route.params.deck
          const decks = this.props.decks
@@ -27,7 +30,7 @@ class Quiz extends Component {
        const correct = decks[deck].questions[questionNumber].correctAnswer.toLowerCase()
         
          
-         if(answer=== correct){
+         if(answer === correct){
              this.setState({correct:this.state.correct + 1})
          }
          else{
@@ -36,22 +39,58 @@ class Quiz extends Component {
           this.setState({questionNumber:this.state.questionNumber +1 , showQuestion:false})
        
         }
-
+    handleAnimaion = () =>{
+        Animated.spring(this.state.animation,
+            {toValue: 1.3,
+            friction: 2,
+            tension: 360,
+              duration: 1000}).start(( )=>{Animated.spring(this.state.animation,
+                {toValue: 1,
+                duration: 1000}).start()
+            })
+            Animated.timing(this.state.rotate,{
+                toValue:360,
+                duration:1500,
+                delay:1000
+            }).start(()=>{
+                Animated.timing(this.state.rotate,{
+                    toValue:0,
+                    duration: 1000
+                }).start()
+            })
+    }
 
     render() {
          const questionNumber =  this.state.questionNumber
          const deck = this.props.route.params.deck
          const decks = this.props.decks
          const number = this.state.questionNumber + 1 
-        
+         const animatedStyle = {
+             transform:[
+                 {scale: this.state.animation}
+             ]
+         }
+          const rotateInterpolate = this.state.rotate.interpolate({
+              inputRange: [0,360],
+              outputRange: ["0deg","1080deg"]
+          })
+           const rotateStyles ={
+               transform:[
+                   {
+                       rotate:rotateInterpolate
+                   }
+               ]
+           }
           if(questionNumber === decks[deck].questions.length){
 
             return(
                 <View style={ styles.container }>
                     <View style={ styles.card }>
+                        <Animated.View style={animatedStyle}>
                          <Text style={ styles.mainText }>You got {this.state.correct} out of {decks[deck].questions.length} </Text>
-                          {this.state.correct > this.state.incorrect? <Text style={{fontSize:85}}>😇</Text>:
-                          <Text style={{fontSize:85}}>😡</Text>}
+                        </Animated.View>
+                         {this.state.correct > this.state.incorrect? <Animated.View style={rotateStyles}><Text style={{fontSize:85}}>😇</Text></Animated.View>:
+                          <Animated.View style={rotateStyles}><Text style={{fontSize:85}}>😡</Text></Animated.View>}
                           <ActionButton  styles={styles} text={'Try again'} color={purple}  />
                           <ActionButton  styles={styles} text={'Back'} color={blue}  />
                     </View>

@@ -14,6 +14,10 @@ class AddDeck extends React.Component {
 
     submitDeckName = () =>{
        const  {title } = this.state;  
+       if(title==="")
+       {
+           return false
+       }
        const deckVal = {[title]: {
         title : title,
          questions:[],
@@ -27,7 +31,7 @@ class AddDeck extends React.Component {
            
         //updating the store
        this.props.addDeck(deckVal)
-       
+       this.setState({title:''})
        this.props.navigation.navigate('DeckView',{deck:title})
      }
   render() {

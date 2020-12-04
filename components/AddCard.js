@@ -18,7 +18,10 @@ import { blue, white } from '../utils/colors';
       submitCard = () =>{
          const  {question, answer, correctanswer } = this.state;  
            const deck = this.props.route.params.deck
-          
+            if(question==='' || answer === '' || correctanswer==="")
+            {
+                return false
+            }
             //updating the memory
             addNewCard(deck,{question, answer, correctanswer })       
              .then(results => {

@@ -1,9 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { recieveDecks } from "../actions";
 import { getDecks,getDatas,getData,storeData } from "../utils/api";
+import { pink, white } from "../utils/colors";
 
 class DeckList extends React.Component {
 
@@ -36,10 +38,10 @@ class DeckList extends React.Component {
             
           const { title, questions } = decks[deck];
           return (
-            <View key={deck}>
-              <Text> {title}</Text>
-              <Text> {questions.length} Cards</Text>
-              <Button  title='view deck' onPress={()=>this.props.navigation.navigate('DeckView',{deck:deck})}></Button>
+            <View style={ styles.card } key={deck}>
+              <Text style={ styles.cardText }> {title}</Text>
+              <Text style={ styles.cardText }> {questions.length} Cards</Text>
+              <Button style={ styles.cardBtn } title='view deck' onPress={()=>this.props.navigation.navigate('DeckView',{deck:deck})}></Button>
             </View>
           );
         })}
@@ -51,9 +53,37 @@ class DeckList extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignSelf: 'stretch',
+    padding:5
+  },
+  card:{
+    flex: 1,
+    padding: 8,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor:pink,
+    margin:8,
+    height:100,
+    borderRadius:10,
+    shadowColor: 'rgba(0,0,0,0.35)',
+    textShadowOffset:{
+      width:0,
+      height:3
+    },
+    shadowRadius:4,
+    shadowOpacity:1, 
   },
+  cardText:{
+    fontSize:30,
+    color:white,
+    margin:8
+  },
+  cardBtn:{
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    margin:5
+  }
 });
 
 function mapDispatchToProps(dispatch){

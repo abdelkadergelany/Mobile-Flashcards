@@ -8,12 +8,12 @@ const initialData = {
       questions: [
         {
           question: "Is Cameroon a country",
-          anser: "No , it is just a region ",
+          answer: "No , it is just a region ",
           correctAnswer: "false",
         },
         {
           question: "Which Country is next to Cameroon",
-          anser: "Congo ",
+          answer: "Congo ",
           correctAnswer: "false",
         },
       ],
@@ -24,14 +24,14 @@ const initialData = {
       questions: [
         {
           question: "What is closure",
-          anser:
+          answer:
             "The combination of a function and the lexical environment within which that function was declared.",
           correctAnswer: "true",
         },
         {
           question: "What is a variable",
-          anser: "Something that stores information",
-          correctAnswer: "ture",
+          answer: "Something that stores information",
+          correctAnswer: "true",
         },
       ],
     },

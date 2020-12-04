@@ -1,7 +1,7 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Text } from "react-native";
-import { purple, white } from '../utils/colors';
+
 
 export default function ActionButton(props) {
             

@@ -16,6 +16,7 @@ import { createStore } from 'redux';
 import reducer from './reducers'
 import AddCard from './components/AddCard';
 import Constants from "expo-constants";
+import Quiz from './components/Quiz';
 
 
 function MyStatusBar({ backgroundColor, ...props }) {
@@ -121,6 +122,16 @@ const Tabs = Platform.OS === 'ios'? createBottomTabNavigator() : createMaterialT
         <Stack.Screen
         name="AddCard"
         component={AddCard}
+        options={{
+          headerTintColor: white,
+          headerStyle: {
+            backgroundColor: purple,
+          },
+        }}
+      />
+       <Stack.Screen
+        name="Quiz"
+        component={Quiz}
         options={{
           headerTintColor: white,
           headerStyle: {

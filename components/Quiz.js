@@ -39,6 +39,17 @@ class Quiz extends Component {
           this.setState({questionNumber:this.state.questionNumber +1 , showQuestion:false})
        
         }
+          goBack = () =>{
+            this.props.navigation.goBack(null);
+          }
+        tryAgain = () =>{
+          this.setState({
+            questionNumber:0,
+            showQuestion:false,
+            correct:0,
+            incorrect: 0
+          })
+        }
     handleAnimaion = () =>{
         Animated.spring(this.state.animation,
             {toValue: 1.3,
@@ -91,8 +102,8 @@ class Quiz extends Component {
                         </Animated.View>
                          {this.state.correct > this.state.incorrect? <Animated.View style={rotateStyles}><Text style={{fontSize:85}}>😇</Text></Animated.View>:
                           <Animated.View style={rotateStyles}><Text style={{fontSize:85}}>😡</Text></Animated.View>}
-                          <ActionButton  styles={styles} text={'Try again'} color={purple}  />
-                          <ActionButton  styles={styles} text={'Back'} color={blue}  />
+                          <ActionButton  onPress={this.tryAgain} styles={styles} text={'Try again'} color={purple}  />
+                          <ActionButton onPress={this.goBack}  styles={styles} text={'Back'} color={blue}  />
                     </View>
 
                 </View>

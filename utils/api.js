@@ -7,9 +7,9 @@ const initialData = {
       title: "Geography",
       questions: [
         {
-          question: "Is Cameroon a country",
-          answer: "No , it is just a region ",
-          correctAnswer: "false",
+          question: "Cameroon is a country",
+          answer: "True, it's a country located at the middle of Africa ",
+          correctAnswer: "true",
         },
         {
           question: "Nigeria is a Country next to Cameroon",

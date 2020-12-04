@@ -23,13 +23,13 @@ const initialData = {
       title: "JavaScript",
       questions: [
         {
-          question: "What is closure",
+          question: "Closure is combination of a function and the lexical environment",
           answer:
             "The combination of a function and the lexical environment within which that function was declared.",
-          correctAnswer: "true",
+          correctAnswer: "false",
         },
         {
-          question: "What is a variable",
+          question: "a variable is Something that stores information",
           answer: "Something that stores information",
           correctAnswer: "true",
         },

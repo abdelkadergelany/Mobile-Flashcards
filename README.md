@@ -2,7 +2,7 @@
 ```
 _____________________________________________/-------------------\______________________________________________________
 ```
-Mobile Flashcard a react-native application for simulating flashcard game
+Mobile Flashcard is a react-native application for simulating flashcard game
 This project was developed as part of the React-native Module of React Nanodegree offered by Udacity.
 It is a mobile flashcard game consisting of decks containing cards or questions. 
 # Functionalities:
